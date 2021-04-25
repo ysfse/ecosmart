@@ -41,7 +41,7 @@ const SingleProduct = (props) => {
                 <View style={styles.imageContainer}>
                     <Image 
                         source={{
-                            uri: "" ? item.image_url
+                            uri: item.image_url ? item.image_url
                             : 'https://cdn.pixabay.com/photo/2012/04/01/17/29/box-23649_960_720.png'
                         }}
                         resizeMode="contain"

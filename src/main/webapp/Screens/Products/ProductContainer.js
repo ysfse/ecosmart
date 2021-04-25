@@ -180,11 +180,11 @@ const ComponentWillMount = () =>{ useFocusEffect((
  </Header>
  {focus == true ? (
    <>
-   <SearchedProduct 
+   {/* <SearchedProduct 
    navigation={props.navigation}
    productsFiltered={productsFiltered} 
   
-   />       
+   />        */}
    <View>
      {Ordered == true 
      ? <Text style={{backgroundColor: "white", textAlign: "center", color: "rgba(0,0,0,0.3", padding: 10}}> Prioritize Choosing the first item of the list since it is the less harmful for the environment</Text> 

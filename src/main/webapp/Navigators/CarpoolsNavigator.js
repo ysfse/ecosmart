@@ -11,8 +11,8 @@ const Tab = createMaterialTopTabNavigator();
 function MyTabs() {
     return(
         <Tab.Navigator>
-            <Tab.Screen name="Carpool" component={Carpools} />
-            <Tab.Screen name="Carpool by shops" component={Payment} />
+            <Tab.Screen name="Suggest a Carpool" component={Carpools} />
+            <Tab.Screen name="Find a Carpool" component={Payment} />
             <Tab.Screen name="Confirm" component={Confirm} />
         </Tab.Navigator>
     );

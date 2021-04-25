@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "easy-shop",
-    "slug": "easy-shop",
+    "name": "Ecosmart",
+    "slug": "Ecosmart",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/Logo.png",
     "splash": {
       "image": "./assets/Logo.png",
       "resizeMode": "contain",
@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.ecosmart.app"
     },
     "web": {
       "favicon": "./assets/favicon.png"

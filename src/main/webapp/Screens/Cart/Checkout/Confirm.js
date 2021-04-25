@@ -44,7 +44,7 @@ const getToken = () =>{
         }))
         .then(x =>  {
             console.log("quantities: ", x.quantities)
-            axios.post('http://192.168.1.2:8092/commands/add', {
+            axios.post('https://ecosmart-atos.herokuapp.com/commands/add', {
                 "products" : x.quantities,
                 "shippingAddress1": finalOrder.order.order.shippingAddress1,
                 "shippingAddress2": finalOrder.order.order.shippingAddress2 ,
@@ -68,7 +68,7 @@ const getToken = () =>{
         .then((res) => {
            
             axios
-                .post('http://192.168.1.2:8092/commands/add',{
+                .post(''https://ecosmart-atos.herokuapp.com/auth/signin/commands/add',{
                     shippingAddress1 : finalOrder.order.order.shippingAddress1,
                     shippingAddress2 :finalOrder.order.order.shippingAddress2 ,
                     city :finalOrder.order.order.city ,
@@ -151,12 +151,14 @@ const getToken = () =>{
                 </View>    
            : null }
            <View style={{ alignItems: 'center', margin: 20 }}>
-                <Button title={'Place order'} onPress={confirmOrder,  Toast.show({
-                    topOffset: 60,
-                    type: "success",
-                    text1: `Offer Carpool added successfully`,
-                    text2: "Thanks for your contribution"
-                })}/>
+                <Button title={'Place order'}  onPress={confirmOrder}
+                // onPress={confirmOrder,  Toast.show({
+                //     topOffset: 60,
+                //     type: "success",
+                //     text1: `Offer Carpool added successfully`,
+                //     text2: "Thanks for your contribution"
+                // })}
+                />
            </View>
             </View>
         </ScrollView>

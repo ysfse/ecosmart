@@ -127,8 +127,8 @@ const Carpools = (props) => {
              }) 
              .then((d)=>{  
             console.log(d);
-            let departdatetime = "20"+ DepartureTimeDate.substring(6,8)+"-"+DepartureTimeDate.substring(0,2)+"-"+DepartureTimeDate.substring(3,5)+" "+DepartureTimeHour.substring(0,5) ;
-            let departdatetimeflex = "20"+ DepartureTimeDate.substring(6,8)+"-"+DepartureTimeDate.substring(0,2)+"-"+DepartureTimeDate.substring(3,5)+" "+DepartureTimeHour.substring(0,5);
+            let departdatetime = "20"+ DepartureTimeDate.substring(6,8)+"-"+DepartureTimeDate.substring(3,5)+"-"+DepartureTimeDate.substring(0,2)+" "+DepartureTimeHour.substring(0,5) ;
+            let departdatetimeflex = "20"+ DepartureTimeDate.substring(6,8)+"-"+DepartureTimeDate.substring(3,5)+"-"+DepartureTimeDate.substring(0,2)+" "+DepartureTimeHour.substring(0,5);
             AsyncStorage.getItem("jwt")
             .then((res) => {
                 console.log(res),
@@ -146,13 +146,11 @@ const Carpools = (props) => {
                         fuel :FuelType
                       },
                     {
-                        headers: { Authorization: `Bearer ${res}` },
-                        
+                        headers: { Authorization: `Bearer ${res}` },                        
                     })
                     .then(() => {console.log("data is " + data)
-                 
-                })
-                  
+                    .catch((err) => console.log(err))     
+                })        
             })
             .catch((error) => console.log(error))
              } )
@@ -316,7 +314,7 @@ const Carpools = (props) => {
                 />
             
             <Item picker>
-                <Text>Chose You fuel type           </Text>
+                <Text>Choose You fuel type           </Text>
                     <Picker
                         mode="dropdown"
                         iosIcon={<Icon name="arrow-down" color={"#007aff"} />}
@@ -346,13 +344,14 @@ const Carpools = (props) => {
                      }
                 />
                       
-                <TouchableOpacity onPress={offer(),
-                   Toast.show({
-                    topOffset: 60,
-                    type: "success",
-                    text1: `Offer Carpool added successfully`,
-                    text2: "Thanks for your contribution"
-                })}>
+                <TouchableOpacity onPress={offer
+                //    Toast.show({
+                //     topOffset: 60,
+                //     type: "success",
+                //     text1: `Offer Carpool added successfully`,
+                //     text2: "Thanks for your contribution"
+                // })
+                }>
 
      <Text >Confirm</Text>
    </TouchableOpacity>
