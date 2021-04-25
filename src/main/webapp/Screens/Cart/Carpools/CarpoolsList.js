@@ -58,7 +58,7 @@ const CarpoolsList = (props) => {
                         headers: { Authorization: `Bearer ${res}` },
                      })
                      .then((response) =>{
-                        // console.log(response),
+                        console.log(response),
                          setCarpools(response.data)
                      })
                      .catch( (error) => {

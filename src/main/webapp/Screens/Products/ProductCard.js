@@ -32,7 +32,7 @@ const ProductCard = (props) => {
                 }
             </Text>
             <Text style={styles.price}>€{price_product}</Text>
-            <Text style={styles.price, {color: "rgb(25, 194, 88)"}}>{carbonBalance.co2Emission} Kg of CO2 per kg</Text>
+            <Text style={styles.price, {color: "rgb(25, 194, 88)"}}>{carbonBalance.co2Emission} Kg of CO2</Text>
             { qte_stock > 0 ? (
                 <View style={{ marginBottom: 60 }}>
                     <EasyButton 

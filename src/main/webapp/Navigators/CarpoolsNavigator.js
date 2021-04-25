@@ -13,7 +13,7 @@ function MyTabs() {
         <Tab.Navigator>
             <Tab.Screen name="Suggest a Carpool" component={Carpools} />
             <Tab.Screen name="Find a Carpool" component={Payment} />
-            <Tab.Screen name="Confirm" component={Confirm} />
+            {/* <Tab.Screen name="Confirm" component={Confirm} /> */}
         </Tab.Navigator>
     );
 }

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ecosmart.entities.Carpool;
+import ecosmart.entities.Fuel;
 import ecosmart.entities.Location;
 import ecosmart.entities.Product;
 import ecosmart.entities.User;
@@ -38,18 +39,24 @@ public class CarpoolServiceImpl implements ICarpoolService {
 		//Set the driver ( the one who offered the carpool)
 		carpool.setDriver(user);
 		
+		
 		//set the departure time of the carpool
-		carpool.setDepartureTime(carpoolOffer.getDepart_time());
-		carpool.setDepartureTimeFlexibility(carpoolOffer.getDepartTimeFlexibility());
+		LocalDateTime departureTime = (carpoolOffer.getDepart_time() != null) ? carpoolOffer.getDepart_time() : LocalDateTime.now();
+		carpool.setDepartureTime(departureTime);
+		
+		LocalDateTime departureTimeFlexibility = (carpoolOffer.getDepartTimeFlexibility() != null) ? carpoolOffer.getDepartTimeFlexibility() : LocalDateTime.now();
+		carpool.setDepartureTimeFlexibility(departureTimeFlexibility);
 		
 		// set the origin and destination of the carpool
 		Location depart = new Location();
-		Location arrival = new Location();
-		depart.setName(carpoolOffer.getDepart_address());
-		arrival.setName(carpoolOffer.getArrival_address());
-		
-		carpool.setArrivalLocation(arrival);
+		String departName = (carpoolOffer.getDepart_address() != null) ? carpoolOffer.getDepart_address() : "";
+		depart.setName(departName);
 		carpool.setDepartureLocation(depart);
+		
+		Location arrival = new Location();
+		String arrivalName = (carpoolOffer.getArrival_address() != null) ? carpoolOffer.getArrival_address() : "";	
+		arrival.setName(arrivalName);	
+		carpool.setArrivalLocation(arrival);
 		
       //set the number of available places 
 		carpool.setTotalPlaces(carpoolOffer.getTotalPlaces());
@@ -58,9 +65,17 @@ public class CarpoolServiceImpl implements ICarpoolService {
 		carpool.setPets(carpoolOffer.getPets());
 		carpool.setSmoking(carpoolOffer.getSmoking());
 		
+		Float routeDistance = (carpoolOffer.getRouteDistance() != null) ? carpoolOffer.getRouteDistance()) : 0;	
 		carpool.setRoute_distance(carpoolOffer.getRouteDistance());
-		carpool.setFuel(carpoolOffer.getFuel());
-		carpool.setFuelConsumptionPer100Km(carpoolOffer.getFuelConsumptionPer100Km());
+		
+		ecosmart.entities.Fuel fuel = (carpoolOffer.getFuel() != null) ? carpoolOffer.getFuel() : Fuel.Gasoline;	
+		carpool.setFuel(fuel);
+		
+		Float fuelConsumptionPer100Km = (carpoolOffer.getFuelConsumptionPer100Km() != null) ? carpoolOffer.getFuelConsumptionPer100Km() : 0;
+		carpool.setFuelConsumptionPer100Km(fuelConsumptionPer100Km);
+		
+		carpool.setState(true);
+		
 		carpoolRepo.save(carpool);
 	}
 

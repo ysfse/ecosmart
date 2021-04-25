@@ -60,6 +60,7 @@ const Confirm = (props) => {
                 <Text style={{ fontSize: 20, fontWeight: 'bold'}}>
                     Confirm Order
                 </Text>
+                <Text>Please confirm the order to reserve it and pick it up later with the carpool, the payment will take place on the spot in the store </Text>
                 {props.route.params ? 
                 <View style={{ borderWidth: 1, borderColor: 'orange'}}>
                     <Text style={styles.title}>Shipping to:</Text>

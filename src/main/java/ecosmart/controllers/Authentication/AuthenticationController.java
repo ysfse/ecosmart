@@ -79,8 +79,8 @@ public class AuthenticationController {
         }
 
         // Creating user's account
-        User user = new User(signUpRequest.getFirstName(),signUpRequest.getLastName(), signUpRequest.getUsername(),
-                signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword()));
+        User user = new User(signUpRequest.getFirstName(),signUpRequest.getLastName(), 
+                signUpRequest.getEmail(), signUpRequest.getUsername(), encoder.encode(signUpRequest.getPassword()));
 
         
         List<Role> strRoles = signUpRequest.getRole();
