@@ -76,6 +76,12 @@ public class CommandLine {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+
+	@Override
+	public String toString() {
+		return "CommandLine [id_line=" + id_line + ", qte_commande=" + qte_commande + ", total_line=" + total_line
+				 + ", product=" + product + "]";
+	}
   
   
 }

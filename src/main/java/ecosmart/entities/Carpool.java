@@ -71,12 +71,12 @@ private Boolean pets;									// the driver allows/does not allow pets
 @Enumerated(EnumType.STRING)
 private Fuel fuel;                                      // Diesel or Gasoline
 
-private Float fuelConsumptionPer100Km;                  // fuel consumption per 100km
+private Float fuelConsumptionPer100Km = 0f;                  // fuel consumption per 100km
 
-private Float route_distance;                           //Calculated using the google maps directions API 
+private Float route_distance = 0f;                           //Calculated using the google maps directions API 
 
 @JsonIgnore
-private Boolean state;                                  //it indicates if the carpool has been done or not, only the driver has the possibility to mark the carpool as "done"
+private Boolean state = true;                                //it indicates if the carpool has been done or not, only the driver has the possibility to mark the carpool as "done"
 
 private Float co2EmissionBeforeCarpool;                 // check ecosmart/statistics/carpooling/CarpoolingServiceImpl for calculation method
 

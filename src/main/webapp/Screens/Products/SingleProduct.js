@@ -62,14 +62,15 @@ const SingleProduct = (props) => {
             justifyContent: "space-between",
             alignItems: "center"
         }}>
-                    <Text style={styles.contentText}>Marjane</Text>
+                    {/* <Text style={styles.contentText}>{item.co2Emission} Kg</Text>
                     <MaterialIcons
   raised
   name='shop'
   style={{fontSize: 30, marginLeft: 12}}
   type='font-awesome'
   color='lightblue'
-  onPress={() => console.log('hello')} /></View>
+  onPress={() => console.log('hello')} />*/}
+            </View> 
 
                  
                  <TouchableOpacity onPress={() => this.quantityHandler('less', i)} style={{ borderWidth: 1, borderColor: '#cccccc' }}>

@@ -167,7 +167,7 @@ export default class MyBarChart extends React.Component{
             )
             //.then((response) => response.json())
             .then((responseJson) => {
-              // console.log(responseJson.data)
+               console.log(responseJson.data)
                 // clone the data from the state
              var dataClone = {
                   labels: ["Day1", "Day2", "Day3", "Day4", "Day5", "Day6", "Day7"],

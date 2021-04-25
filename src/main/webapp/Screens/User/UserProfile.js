@@ -12,6 +12,8 @@ import { useFocusEffect } from "@react-navigation/native";
 import AsyncStorage from "@react-native-community/async-storage";
 import OrderCard from "../../Shared/OrderCard";
 import { Input } from "react-native-elements";
+import { Item, Picker } from 'native-base'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 import axios from "axios";
 import baseURL from "../../assets/common/baseUrl";
@@ -22,9 +24,15 @@ import { useEffect } from "react/cjs/react.development";
 
 import RNPickerSelect from "react-native-picker-select";
 
+const dual =[ 
+  {"name": "yes", "code": "1"}, 
+  {"name": "no", "code": "0"}, 
+];
+
 const UserProfile = (props) => {
   const context = useContext(AuthGlobal);
   const [userProfile, setUserProfile] = useState();
+  const [emb, setemb] = useState();
   const [orders, setOrders] = useState();
   const [language, setLanguage] = useState("");
     useFocusEffect(
@@ -96,7 +104,32 @@ const UserProfile = (props) => {
                   {userProfile ? userProfile.email : " "}
                 </Text>
               </View>
-         
+              <Item picker>
+                  <View><Text>Do you accept delivery without</Text>
+                         <Text> packaging for non-fragile products?</Text></View>
+                         
+                         <View>
+                         <Picker
+                        mode="dropdown"
+                        iosIcon={<Icon name="arrow-down" color={"#007aff"} />}
+                        style={{ width: 150, height: 50, marginTop:40}}
+                        selectedValue={emb}
+                        placeholder="Do you accept delivery without packaging for non-fragile products?"
+                        placeholderStyle={{ color: '#007aff' }}
+                        placeholderIconColor="#007aff"
+                        onValueChange={(e) => setemb(e)}
+                    >
+                        {dual.map((c) => {
+                            return <Picker.Item 
+                                    key={c.code} 
+                                    label={c.name}
+                                    value={c.name}
+                                    />
+                        })}
+                    </Picker>
+                         </View>
+                
+                </Item>
             </View>
     
        

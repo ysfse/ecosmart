@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext} from 'react'
-import { Text, View, Button,TouchableOpacity, Keyboard } from 'react-native'
+import { Text, View, Button,TouchableOpacity, Keyboard, Platform } from 'react-native'
 import { Item, Picker } from 'native-base'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import FormContainer from '../../../Shared/Form/FormContainer'
@@ -27,6 +27,7 @@ const affirm =[
     {"name": "true", "code": "1"}, 
     {"name": "false", "code": "0"}, 
 ];
+
 
 const Carpools = (props) => {
     const context = useContext(AuthGlobal)
@@ -127,8 +128,17 @@ const Carpools = (props) => {
              }) 
              .then((d)=>{  
             console.log(d);
-            let departdatetime = "20"+ DepartureTimeDate.substring(6,8)+"-"+DepartureTimeDate.substring(3,5)+"-"+DepartureTimeDate.substring(0,2)+" "+DepartureTimeHour.substring(0,5) ;
-            let departdatetimeflex = "20"+ DepartureTimeDate.substring(6,8)+"-"+DepartureTimeDate.substring(3,5)+"-"+DepartureTimeDate.substring(0,2)+" "+DepartureTimeHour.substring(0,5);
+            let departdatetime = ""
+            let departdatetimeflex = ""
+            if(Platform.OS==="ios"){
+              departdatetime = "20"+ DepartureTimeDate.substring(6,8)+"-"+DepartureTimeDate.substring(3,5)+"-"+DepartureTimeDate.substring(0,2)+" "+DepartureTimeHour.substring(0,5) ;
+              departdatetimeflex = "20"+ DepartureTimeFlexibility.substring(6,8)+"-"+DepartureTimeFlexibility.substring(3,5)+"-"+DepartureTimeFlexibility.substring(0,2)+" "+DepartureTimeFlexibility.substring(0,5); 
+            } else {
+              departdatetime = "20"+ DepartureTimeDate.substring(6,8)+"-"+DepartureTimeDate.substring(0,2)+"-"+DepartureTimeDate.substring(3,5)+" "+DepartureTimeHour.substring(0,5) ;
+              departdatetimeflex = "20"+ DepartureTimeFlexibility.substring(6,8)+"-"+DepartureTimeFlexibility.substring(0,2)+"-"+DepartureTimeFlexibility.substring(3,5)+" "+DepartureTimeFlexibility.substring(0,5);  
+            }
+            // let departdatetime = "20"+ DepartureTimeDate.substring(6,8)+"-"+DepartureTimeDate.substring(3,5)+"-"+DepartureTimeDate.substring(0,2)+" "+DepartureTimeHour.substring(0,5) ;
+            // let departdatetimeflex = "20"+ DepartureTimeDate.substring(6,8)+"-"+DepartureTimeDate.substring(3,5)+"-"+DepartureTimeDate.substring(0,2)+" "+DepartureTimeHour.substring(0,5);
             AsyncStorage.getItem("jwt")
             .then((res) => {
                 console.log(res),
@@ -148,17 +158,19 @@ const Carpools = (props) => {
                     {
                         headers: { Authorization: `Bearer ${res}` },                        
                     })
-                    .then(() => {console.log("data is " + data)
+                    .then(() => {
+                      console.log("data is " + data)
+                      props.navigation.navigate('Cart')
+                    })
                     .catch((err) => console.log(err))     
                 })        
             })
             .catch((error) => console.log(error))
-             } )
              .catch((error) =>{
                    console.log(error)
                }
                )
-           };
+              }
    
     return (
         <KeyboardAwareScrollView
@@ -262,13 +274,33 @@ const Carpools = (props) => {
                 'https://maps.googleapis.com/maps/api',
               useOnPlatform: 'web',
             }}  />
-      
+
+              <Input
+                    placeholder={"Places"}
+                    name={"pla"}
+                    value={Places}
+                    keyboardType={"numeric"}
+                    onChangeText={(text) => setPlaces(text)}
+                />
+
+                
+              <Input
+                    placeholder={"Fuel Consumption per Km"}
+                    name={"sfcp"}
+                    value={FuelConsumptionPerKm}
+                    keyboardType={"numeric"}
+                    onChangeText={(text) => setFuelConsumptionPerKm(text)
+                     }
+                />
+
+
                      <Item picker>
                          <Text>Do you allow smoking ?         </Text>
-                    <Picker
+                         <View>
+                         <Picker
                         mode="dropdown"
                         iosIcon={<Icon name="arrow-down" color={"#007aff"} />}
-                        style={{ width: undefined }}
+                        style={{ width: 150, height: 50}}
                         selectedValue={Smoking}
                         placeholder={Smoking}
                         placeholderStyle={{ color: '#007aff' }}
@@ -283,15 +315,18 @@ const Carpools = (props) => {
                                     />
                         })}
                     </Picker>
+                         </View>
+                   
                 </Item>
                      <Item picker>
                          <Text>Do you allow pets in ?            </Text>
-                <Picker
+                         <View>
+                         <Picker
                         mode="dropdown"
                         iosIcon={<Icon name="arrow-down" color={"#007aff"} />}
-                        style={{ width: undefined }}
+                        style={{ width: 150, height: 50}}
                         selectedValue={Pets}
-                        placeholder="Select your fuel type"
+                        placeholder="Do you allow pets in ?"
                         placeholderStyle={{ color: '#007aff' }}
                         placeholderIconColor="#007aff"
                         onValueChange={(e) =>setPets(e)}
@@ -304,21 +339,17 @@ const Carpools = (props) => {
                                     />
                         })}
                     </Picker>
+                         </View>
+                
                 </Item>
-                  <Input
-                    placeholder={"Places"}
-                    name={"pla"}
-                    value={Places}
-                    keyboardType={"numeric"}
-                    onChangeText={(text) => setPlaces(text)}
-                />
+                 
             
             <Item picker>
                 <Text>Choose You fuel type           </Text>
-                    <Picker
+                <View><Picker
                         mode="dropdown"
                         iosIcon={<Icon name="arrow-down" color={"#007aff"} />}
-                        style={{ width: undefined }}
+                        style={{ width: 150, height: 50}}
                         selectedValue={FuelType}
                         placeholder="Select your fuel type"
                         placeholderStyle={{ color: '#007aff' }}
@@ -332,17 +363,10 @@ const Carpools = (props) => {
                                     value={c.name}
                                     />
                         })}
-                    </Picker>
+                    </Picker></View>
+                    
                 </Item>
             
-                    <Input
-                    placeholder={"Fuel Consumption per Km"}
-                    name={"sfcp"}
-                    value={FuelConsumptionPerKm}
-                    keyboardType={"numeric"}
-                    onChangeText={(text) => setFuelConsumptionPerKm(text)
-                     }
-                />
                       
                 <TouchableOpacity onPress={offer
                 //    Toast.show({
@@ -353,7 +377,7 @@ const Carpools = (props) => {
                 // })
                 }>
 
-     <Text >Confirm</Text>
+     <Text style={{marginTop: 50, color: "green"}}>Confirm</Text>
    </TouchableOpacity>
             </FormContainer>
         </KeyboardAwareScrollView>

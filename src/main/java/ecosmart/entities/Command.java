@@ -152,6 +152,13 @@ public class Command {
 		this.state = state;
 	}
 
+	@Override
+	public String toString() {
+		return "Command [id_command=" + id_command + ", commandDate=" + commandDate + ", total_command=" + total_command
+				 + ", basket=" + basket + ", user=" + user + ", shipping=" + shipping + ", state="
+				+ state + ", carbonGain=" + carbonGain + ", carbonRatio=" + carbonRatio + "]";
+	}
+
 	
 	
 	

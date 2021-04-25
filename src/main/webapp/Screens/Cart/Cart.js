@@ -77,7 +77,7 @@ const Cart = (props) => {
              <View style={{ display: "flex", justifyContent: "center", alignItems: "flex-start"}}>
                 <Text style={styles.price, {fontWeight: "500"}}>Total Price : <Text style={styles.price}> € {total}</Text></Text> 
                 
-                <Text style={styles.price, {fontWeight: "500"}}>Total of carbon footprint : <Text style={styles.price}> {totalCo2Emission}%</Text></Text> 
+                <Text style={styles.price, {fontWeight: "500"}}>Total of carbon footprint : <Text style={styles.price}> {totalCo2Emission} kg</Text></Text> 
                 
                 <Text style={styles.price, {fontWeight: "500", color: "green"}}>Gain of carbon footprint :  <Text style={styles.price}> {gainCo2Emission.toFixed(2)}%</Text></Text> 
                
