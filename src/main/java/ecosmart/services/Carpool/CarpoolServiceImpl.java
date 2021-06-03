@@ -65,7 +65,7 @@ public class CarpoolServiceImpl implements ICarpoolService {
 		carpool.setPets(carpoolOffer.getPets());
 		carpool.setSmoking(carpoolOffer.getSmoking());
 		
-		Float routeDistance = (carpoolOffer.getRouteDistance() != null) ? carpoolOffer.getRouteDistance()) : 0;	
+		Float routeDistance = (carpoolOffer.getRouteDistance() != null) ? carpoolOffer.getRouteDistance() : 0;	
 		carpool.setRoute_distance(carpoolOffer.getRouteDistance());
 		
 		ecosmart.entities.Fuel fuel = (carpoolOffer.getFuel() != null) ? carpoolOffer.getFuel() : Fuel.Gasoline;	
